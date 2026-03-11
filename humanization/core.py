@@ -5,6 +5,7 @@ from playwright.async_api import Page, Locator, TimeoutError
 from patchright.async_api import expect, async_playwright
 from loguru import logger
 from dataclasses import dataclass
+from humanization import user_agents
 
 
 @dataclass
@@ -14,26 +15,98 @@ class HumanizationConfig:
     characters_per_minute: float = 600
     backspace_cpm: float = 1200
     timeout: float = 5000
-    stealth_mode: bool = True  
+    stealth_mode: bool = True
 
-class Humanization:
-    def __init__(self, page: Page, config: Optional[HumanizationConfig] = None):
-        self.page = page
-        self.config = config or HumanizationConfig()
+
+@dataclass
+class ProxyConfig:
+    """Proxy configuration for Playwright browser contexts.
+
+    Args:
+        server: Proxy server URL (e.g. "http://host:8080", "socks5://host:1080").
+        username: Optional proxy username.
+        password: Optional proxy password.
+        bypass: Optional comma-separated list of domains to bypass the proxy.
+    """
+    server: str
+    username: Optional[str] = None
+    password: Optional[str] = None
+    bypass: Optional[str] = None
 
     @classmethod
-    async def undetected_launch(cls, user_data_dir: str, config: Optional[HumanizationConfig] = None):
-        """Launch a stealthy browser context using Patchright recommendations."""
-        async with async_playwright() as p:
-            context = await p.chromium.launch_persistent_context(
-                user_data_dir=user_data_dir,
-                channel="chrome",
-                args=["--incognito", "--disable-blink-features=AutomationControlled"],
-                headless=False,
-                no_viewport=True,
-            )
-            page = await context.new_page()
-            return cls(page, config)
+    def tor(cls, port: int = 9050) -> "ProxyConfig":
+        """Create a Tor proxy config (SOCKS5 on localhost)."""
+        return cls(server=f"socks5://127.0.0.1:{port}")
+
+    def to_playwright_proxy(self) -> Dict[str, str]:
+        """Convert to the dict format Playwright expects."""
+        proxy: Dict[str, str] = {"server": self.server}
+        if self.username:
+            proxy["username"] = self.username
+        if self.password:
+            proxy["password"] = self.password
+        if self.bypass:
+            proxy["bypass"] = self.bypass
+        return proxy
+
+
+class Humanization:
+    def __init__(self, page: Page, config: Optional[HumanizationConfig] = None,
+                 _playwright=None, _context=None):
+        self.page = page
+        self.config = config or HumanizationConfig()
+        self._playwright = _playwright
+        self._context = _context
+
+    async def close(self):
+        """Close the browser context and playwright instance."""
+        if self._context:
+            await self._context.close()
+            self._context = None
+        if self._playwright:
+            await self._playwright.stop()
+            self._playwright = None
+
+    @classmethod
+    async def undetected_launch(
+        cls,
+        user_data_dir: str,
+        config: Optional[HumanizationConfig] = None,
+        proxy: Optional[ProxyConfig] = None,
+        user_agent: Optional[str] = None,
+        headless: bool = False,
+    ):
+        """Launch a stealthy browser context using Patchright recommendations.
+
+        Args:
+            user_data_dir: Path to the user data directory for persistent context.
+            config: Humanization configuration.
+            proxy: Optional proxy configuration (use ProxyConfig.tor() for Tor).
+            user_agent: Optional user agent string. If None, a random one is picked from the pool.
+            headless: Run browser in headless mode (default False for stealth).
+        """
+        if user_agent is None:
+            user_agent = user_agents.get_random()
+
+        launch_kwargs = {
+            "user_data_dir": user_data_dir,
+            "channel": "chrome",
+            "args": ["--incognito", "--disable-blink-features=AutomationControlled"],
+            "headless": headless,
+            "no_viewport": True,
+            "user_agent": user_agent,
+        }
+
+        if proxy is not None:
+            launch_kwargs["proxy"] = proxy.to_playwright_proxy()
+            logger.info(f"Using proxy: {proxy.server}")
+
+        logger.info(f"Using user agent: {user_agent[:60]}...")
+
+        p = await async_playwright().start()
+        context = await p.chromium.launch_persistent_context(**launch_kwargs)
+        page = await context.new_page()
+        return cls(page, config, _playwright=p, _context=context)
 
     async def random_delay(self) -> float:
         delay = random.uniform(0.7, 1.0)

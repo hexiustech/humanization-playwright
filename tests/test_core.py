@@ -1,8 +1,8 @@
 # tests/test_core.py
 import pytest
-from unittest.mock import AsyncMock, MagicMock
-from humanization.core import Humanization, HumanizationConfig
-from playwright.async_api import Page, Locator  
+from unittest.mock import AsyncMock, MagicMock, patch
+from humanization.core import Humanization, HumanizationConfig, ProxyConfig
+from playwright.async_api import Page, Locator
 
 @pytest.mark.asyncio
 async def test_config_defaults():
@@ -68,12 +68,125 @@ async def test_type_at(mock_page, mock_locator):
     # One press per character
     assert mock_page.keyboard.press.call_count == 4
 
-# Optional: tests for click_at, backspace_at, hover_at, etc.
+# --- ProxyConfig tests ---
+
+def test_proxy_config_to_playwright_full():
+    proxy = ProxyConfig(server="http://proxy:8080", username="user", password="pass", bypass="localhost")
+    result = proxy.to_playwright_proxy()
+    assert result == {
+        "server": "http://proxy:8080",
+        "username": "user",
+        "password": "pass",
+        "bypass": "localhost",
+    }
+
+
+def test_proxy_config_to_playwright_minimal():
+    proxy = ProxyConfig(server="socks5://host:1080")
+    result = proxy.to_playwright_proxy()
+    assert result == {"server": "socks5://host:1080"}
+    assert "username" not in result
+    assert "password" not in result
+    assert "bypass" not in result
+
+
+def test_proxy_config_tor():
+    proxy = ProxyConfig.tor()
+    assert proxy.server == "socks5://127.0.0.1:9050"
+    assert proxy.username is None
+
+
+def test_proxy_config_tor_custom_port():
+    proxy = ProxyConfig.tor(port=9150)
+    assert proxy.server == "socks5://127.0.0.1:9150"
+
+
+# --- undetected_launch tests (mocked) ---
+
+@pytest.mark.asyncio
+async def test_undetected_launch_with_proxy():
+    mock_page = AsyncMock(spec=Page)
+    mock_context = AsyncMock()
+    mock_context.new_page = AsyncMock(return_value=mock_page)
+
+    mock_chromium = AsyncMock()
+    mock_chromium.launch_persistent_context = AsyncMock(return_value=mock_context)
+
+    mock_pw = AsyncMock()
+    mock_pw.chromium = mock_chromium
+
+    with patch("humanization.core.async_playwright") as mock_apw:
+        mock_apw.return_value.start = AsyncMock(return_value=mock_pw)
+        proxy = ProxyConfig(server="http://proxy:8080", username="u", password="p")
+        h = await Humanization.undetected_launch(
+            "/tmp/test", proxy=proxy, user_agent="TestUA/1.0"
+        )
+        call_kwargs = mock_chromium.launch_persistent_context.call_args[1]
+        assert call_kwargs["proxy"] == {"server": "http://proxy:8080", "username": "u", "password": "p"}
+        assert call_kwargs["user_agent"] == "TestUA/1.0"
+        assert h.page == mock_page
+        assert h._playwright == mock_pw
+        assert h._context == mock_context
+
+
+@pytest.mark.asyncio
+async def test_undetected_launch_random_user_agent():
+    mock_page = AsyncMock(spec=Page)
+    mock_context = AsyncMock()
+    mock_context.new_page = AsyncMock(return_value=mock_page)
+
+    mock_chromium = AsyncMock()
+    mock_chromium.launch_persistent_context = AsyncMock(return_value=mock_context)
+
+    mock_pw = AsyncMock()
+    mock_pw.chromium = mock_chromium
+
+    with patch("humanization.core.async_playwright") as mock_apw, \
+         patch("humanization.core.user_agents") as mock_ua_mod:
+        mock_apw.return_value.start = AsyncMock(return_value=mock_pw)
+        mock_ua_mod.get_random.return_value = "RandomUA/1.0"
+
+        h = await Humanization.undetected_launch("/tmp/test")
+        call_kwargs = mock_chromium.launch_persistent_context.call_args[1]
+        assert call_kwargs["user_agent"] == "RandomUA/1.0"
+        mock_ua_mod.get_random.assert_called_once()
+
+
+@pytest.mark.asyncio
+async def test_undetected_launch_no_proxy():
+    mock_page = AsyncMock(spec=Page)
+    mock_context = AsyncMock()
+    mock_context.new_page = AsyncMock(return_value=mock_page)
+
+    mock_chromium = AsyncMock()
+    mock_chromium.launch_persistent_context = AsyncMock(return_value=mock_context)
+
+    mock_pw = AsyncMock()
+    mock_pw.chromium = mock_chromium
+
+    with patch("humanization.core.async_playwright") as mock_apw:
+        mock_apw.return_value.start = AsyncMock(return_value=mock_pw)
+        h = await Humanization.undetected_launch("/tmp/test", user_agent="TestUA/1.0")
+        call_kwargs = mock_chromium.launch_persistent_context.call_args[1]
+        assert "proxy" not in call_kwargs
+
+
+@pytest.mark.asyncio
+async def test_close():
+    mock_context = AsyncMock()
+    mock_pw = AsyncMock()
+    h = Humanization(AsyncMock(spec=Page), _playwright=mock_pw, _context=mock_context)
+    await h.close()
+    mock_context.close.assert_called_once()
+    mock_pw.stop.assert_called_once()
+    assert h._context is None
+    assert h._playwright is None
+
 
 @pytest.mark.skip("Requires real browser; run locally")
 @pytest.mark.asyncio
-async def test_undetected_launch():
+async def test_undetected_launch_integration():
     config = HumanizationConfig()
     h = await Humanization.undetected_launch("/tmp/user_data", config)
     assert h.page is not None
-    await h.page.context.close()
+    await h.close()
