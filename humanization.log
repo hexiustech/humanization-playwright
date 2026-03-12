@@ -1,0 +1,128 @@
+2026-03-11 03:16:35.838 | INFO     | humanization.core:move_to:200 - Starting move_to
+2026-03-11 03:16:35.838 | WARNING  | humanization.core:get_box:127 - Skipping visibility check for locator type: <class 'unittest.mock.MagicMock'>
+2026-03-11 03:16:35.958 | INFO     | humanization.core:move_to:200 - Starting move_to
+2026-03-11 03:16:35.958 | WARNING  | humanization.core:get_box:127 - Skipping visibility check for locator type: <class 'unittest.mock.MagicMock'>
+2026-03-11 03:16:36.228 | WARNING  | humanization.core:type_at:265 - Skipping focus check for locator type: <class 'unittest.mock.MagicMock'>
+2026-03-11 03:16:36.642 | INFO     | humanization.core:undetected_launch:102 - Using proxy: http://proxy:8080
+2026-03-11 03:16:36.642 | INFO     | humanization.core:undetected_launch:104 - Using user agent: TestUA/1.0...
+2026-03-11 03:16:36.648 | INFO     | humanization.core:undetected_launch:104 - Using user agent: RandomUA/1.0...
+2026-03-11 03:16:36.653 | INFO     | humanization.core:undetected_launch:104 - Using user agent: TestUA/1.0...
+2026-03-11 03:16:36.660 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.660 | DEBUG    | humanization.user_agents:get_random:43 - Selected random user agent: Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Fir...
+2026-03-11 03:16:36.661 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.661 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.661 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 03:16:36.661 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.662 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.662 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.662 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.662 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 03:16:36.663 | INFO     | humanization.user_agents:add:58 - Added user agent to pool: CustomUA/1.0...
+2026-03-11 03:16:36.663 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.663 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.663 | DEBUG    | humanization.user_agents:add:55 - User agent already in pool: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2026-03-11 03:16:36.663 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.664 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.664 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 03:16:36.664 | INFO     | humanization.user_agents:add:58 - Added user agent to pool: CustomUA/1.0...
+2026-03-11 03:16:36.664 | INFO     | humanization.user_agents:remove:65 - Removed user agent from pool: CustomUA/1.0...
+2026-03-11 03:16:36.664 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.664 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.665 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 03:16:36.665 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.665 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.665 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 03:16:36.665 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.666 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.666 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 03:16:36.666 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.667 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.667 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.669 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 03:16:36.669 | INFO     | humanization.user_agents:add:58 - Added user agent to pool: TestUA/1.0...
+2026-03-11 03:16:36.669 | INFO     | humanization.user_agents:add:58 - Added user agent to pool: TestUA/2.0...
+2026-03-11 03:16:36.670 | INFO     | humanization.user_agents:save:87 - Saved 2 user agents to /tmp/pytest-of-root/pytest-0/test_save_and_load0/ua.json
+2026-03-11 03:16:36.670 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 03:16:36.670 | INFO     | humanization.user_agents:load:99 - Loaded 2 user agents from /tmp/pytest-of-root/pytest-0/test_save_and_load0/ua.json
+2026-03-11 03:16:36.670 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.671 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 03:16:36.671 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:51.112 | INFO     | humanization.core:move_to:200 - Starting move_to
+2026-03-11 12:56:51.112 | WARNING  | humanization.core:get_box:127 - Skipping visibility check for locator type: <class 'unittest.mock.MagicMock'>
+2026-03-11 12:56:51.308 | INFO     | humanization.core:move_to:200 - Starting move_to
+2026-03-11 12:56:51.308 | WARNING  | humanization.core:get_box:127 - Skipping visibility check for locator type: <class 'unittest.mock.MagicMock'>
+2026-03-11 12:56:51.459 | WARNING  | humanization.core:type_at:265 - Skipping focus check for locator type: <class 'unittest.mock.MagicMock'>
+2026-03-11 12:56:51.910 | INFO     | humanization.core:undetected_launch:102 - Using proxy: http://proxy:8080
+2026-03-11 12:56:51.911 | INFO     | humanization.core:undetected_launch:104 - Using user agent: TestUA/1.0...
+2026-03-11 12:56:51.919 | INFO     | humanization.core:undetected_launch:104 - Using user agent: RandomUA/1.0...
+2026-03-11 12:56:51.925 | INFO     | humanization.core:undetected_launch:104 - Using user agent: TestUA/1.0...
+2026-03-11 12:56:52.023 | INFO     | humanization.crawler.crawler:run:114 - Crawling https://example.com | target='some data' | pattern=generic
+2026-03-11 12:56:52.026 | INFO     | humanization.crawler.crawler:run:134 - No cached script found, generating via API
+2026-03-11 12:56:52.026 | INFO     | humanization.crawler.crawler:_generate_and_run:238 - Generated new script (tokens: 1500)
+2026-03-11 12:56:52.036 | INFO     | humanization.crawler.crawler:run:114 - Crawling https://example.com/page | target='some random data' | pattern=generic
+2026-03-11 12:56:52.039 | DEBUG    | humanization.crawler.crawler:_try_pattern_script:149 - Found pattern script: pattern_generic.py
+2026-03-11 12:56:52.040 | INFO     | humanization.crawler.crawler:run:124 - Pattern script succeeded for 'generic' on example.com
+2026-03-11 12:56:52.049 | INFO     | humanization.crawler.crawler:run:114 - Crawling https://example.com | target='some data' | pattern=generic
+2026-03-11 12:56:52.051 | DEBUG    | humanization.crawler.crawler:_try_pattern_script:149 - Found pattern script: pattern_generic.py
+2026-03-11 12:56:52.051 | WARNING  | humanization.crawler.crawler:_run_with_healing:193 - Script attempt 1/4 failed: Script execution failed: ValueError: broken
+2026-03-11 12:56:52.052 | DEBUG    | humanization.crawler.crawler:_run_with_healing:214 - Healed script (tokens: 1500)
+2026-03-11 12:56:52.052 | INFO     | humanization.crawler.crawler:run:124 - Pattern script succeeded for 'generic' on example.com
+2026-03-11 12:56:52.059 | INFO     | humanization.crawler.crawler:run:114 - Crawling https://example.com | target='some data' | pattern=generic
+2026-03-11 12:56:52.061 | INFO     | humanization.crawler.crawler:run:134 - No cached script found, generating via API
+2026-03-11 12:56:52.069 | INFO     | humanization.crawler.crawler:run:114 - Crawling https://example.com | target='some data' | pattern=generic
+2026-03-11 12:56:52.071 | INFO     | humanization.crawler.crawler:run:134 - No cached script found, generating via API
+2026-03-11 12:56:52.072 | INFO     | humanization.crawler.crawler:_generate_and_run:238 - Generated new script (tokens: 150)
+2026-03-11 12:56:52.072 | WARNING  | humanization.crawler.crawler:_run_with_healing:193 - Script attempt 1/2 failed: Script execution failed: NameError: name 'RuntimeError' is not defined
+2026-03-11 12:56:52.073 | DEBUG    | humanization.crawler.crawler:_run_with_healing:214 - Healed script (tokens: 150)
+2026-03-11 12:56:52.073 | WARNING  | humanization.crawler.crawler:_run_with_healing:193 - Script attempt 2/2 failed: Script execution failed: NameError: name 'RuntimeError' is not defined
+2026-03-11 12:56:52.073 | INFO     | humanization.crawler.crawler:_generate_and_run:250 - Pattern script failed, trying domain-specific for example.com
+2026-03-11 12:56:52.073 | INFO     | humanization.crawler.crawler:_generate_and_run:238 - Generated new script (tokens: 150)
+2026-03-11 12:56:52.074 | WARNING  | humanization.crawler.crawler:_run_with_healing:193 - Script attempt 1/2 failed: Script execution failed: NameError: name 'RuntimeError' is not defined
+2026-03-11 12:56:52.074 | DEBUG    | humanization.crawler.crawler:_run_with_healing:214 - Healed script (tokens: 150)
+2026-03-11 12:56:52.074 | WARNING  | humanization.crawler.crawler:_run_with_healing:193 - Script attempt 2/2 failed: Script execution failed: NameError: name 'RuntimeError' is not defined
+2026-03-11 12:56:52.083 | INFO     | humanization.crawler.crawler:run:114 - Crawling https://example.com/page | target='some random data' | pattern=generic
+2026-03-11 12:56:52.085 | DEBUG    | humanization.crawler.crawler:_try_domain_script:163 - Found domain script: domain_example_com.py
+2026-03-11 12:56:52.085 | INFO     | humanization.crawler.crawler:run:130 - Domain script succeeded for example.com
+2026-03-11 12:56:52.096 | INFO     | humanization.crawler.crawler:run:114 - Crawling https://shop.com/catalog | target='all product names and prices' | pattern=product_listing
+2026-03-11 12:56:52.097 | DEBUG    | humanization.crawler.crawler:_try_pattern_script:149 - Found pattern script: pattern_product_listing.py
+2026-03-11 12:56:52.098 | INFO     | humanization.crawler.crawler:run:124 - Pattern script succeeded for 'product_listing' on shop.com
+2026-03-11 12:56:52.181 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.181 | DEBUG    | humanization.user_agents:get_random:43 - Selected random user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2026-03-11 12:56:52.182 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.182 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.182 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 12:56:52.183 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.183 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.184 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.184 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.184 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 12:56:52.185 | INFO     | humanization.user_agents:add:58 - Added user agent to pool: CustomUA/1.0...
+2026-03-11 12:56:52.185 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.185 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.186 | DEBUG    | humanization.user_agents:add:55 - User agent already in pool: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2026-03-11 12:56:52.186 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.186 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.187 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 12:56:52.187 | INFO     | humanization.user_agents:add:58 - Added user agent to pool: CustomUA/1.0...
+2026-03-11 12:56:52.187 | INFO     | humanization.user_agents:remove:65 - Removed user agent from pool: CustomUA/1.0...
+2026-03-11 12:56:52.187 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.188 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.188 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 12:56:52.188 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.189 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.189 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 12:56:52.189 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.190 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.190 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 12:56:52.190 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.190 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.191 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.192 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 12:56:52.192 | INFO     | humanization.user_agents:add:58 - Added user agent to pool: TestUA/1.0...
+2026-03-11 12:56:52.192 | INFO     | humanization.user_agents:add:58 - Added user agent to pool: TestUA/2.0...
+2026-03-11 12:56:52.192 | INFO     | humanization.user_agents:save:87 - Saved 2 user agents to /tmp/pytest-of-root/pytest-1/test_save_and_load0/ua.json
+2026-03-11 12:56:52.192 | INFO     | humanization.user_agents:clear:73 - Cleared user agent pool
+2026-03-11 12:56:52.193 | INFO     | humanization.user_agents:load:99 - Loaded 2 user agents from /tmp/pytest-of-root/pytest-1/test_save_and_load0/ua.json
+2026-03-11 12:56:52.193 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.193 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
+2026-03-11 12:56:52.194 | INFO     | humanization.user_agents:reset:80 - Reset user agent pool to defaults
